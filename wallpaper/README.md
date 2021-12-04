@@ -1,6 +1,13 @@
 # wallpaper
 
-A new Flutter project.
+A new Flutter project created for for internshala task.
+
+# Functionalities of this project:
+1. you can search for wallpaper
+2. you can select wallpaper for more information
+3. you can download wallpaper for future use
+4. you can like wallpaper for future download or use
+5. you can edit your name for using the app
 
 ## Getting Started
 
