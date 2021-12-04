@@ -10,6 +10,17 @@ A new Flutter project created for for internshala task.
 5. you can edit your name for using the app
 6. The main functionality of this app is you can use the wallpaper for lock, home or for both screens.
 
+# use of packages
+1. firebase auth
+2. firebase core
+3. cloud firestore
+4. flutter staggered grid view
+5. wallpaper manager
+6. cached network image
+7. dio
+8. lorem ipsum for dummy data
+and lots of more packages i have used in this project.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
