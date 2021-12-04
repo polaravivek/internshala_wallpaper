@@ -8,6 +8,7 @@ A new Flutter project created for for internshala task.
 3. you can download wallpaper for future use
 4. you can like wallpaper for future download or use
 5. you can edit your name for using the app
+6. The main functionality of this app is you can use the wallpaper for lock, home or for both screens.
 
 ## Getting Started
 
