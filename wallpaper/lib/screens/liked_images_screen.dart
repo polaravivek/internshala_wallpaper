@@ -16,7 +16,7 @@ class _LikedImagesState extends State<LikedImages> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   var uid;
-  late List<dynamic> data;
+  List<dynamic> data = [];
   late List<dynamic> reversedData;
 
   Future<dynamic> getLikedInfo() async {
