@@ -20,8 +20,9 @@ class ImageWithInfo extends StatefulWidget {
   final title;
   final url;
   final path;
+  final url2;
 
-  const ImageWithInfo({this.url, this.title, this.path});
+  const ImageWithInfo({this.url, this.title, this.path, this.url2});
 
   @override
   _ImageInfoState createState() => _ImageInfoState();
@@ -67,35 +68,39 @@ class _ImageInfoState extends State<ImageWithInfo> {
       location = WallpaperManager.BOTH_SCREENS;
     }
 
-    var file;
-    if (widget.url != null) {
-      file = await DefaultCacheManager().getSingleFile(widget.url);
-      String result =
-          await WallpaperManager.setWallpaperFromFile(file.path, location);
-      showSnack(context: context, label: result);
+    if (widget.url2 != null) {
+      await DefaultCacheManager()
+          .getSingleFile(widget.url2)
+          .then((value) async {
+        await WallpaperManager.setWallpaperFromFile(value.path, location)
+            .then((value) => showSnack(context: context, label: value));
+      });
     } else {
-      String result =
-          await WallpaperManager.setWallpaperFromFile(widget.path, location);
-      showSnack(context: context, label: result);
+      await WallpaperManager.setWallpaperFromFile(widget.path, location)
+          .then((value) => showSnack(context: context, label: value));
     }
   }
 
   var uid;
 
   getLikedInfo() async {
-    var docref = _firestore.collection('users').doc('$uid');
-
-    var doc = await docref.get();
-    List<dynamic> data = doc.get('likedUrls');
-    if (!data.contains(widget.url)) {
-      setState(() {
-        isFavorite = false;
-      });
-    } else {
-      setState(() {
-        isFavorite = true;
-      });
-    }
+    _firestore.collection('users').doc('$uid').get().then((value) {
+      List<dynamic> data = value.get('likedUrls');
+      if (!data.contains(widget.url)) {
+        setState(() {
+          isFavorite = false;
+        });
+      } else {
+        setState(() {
+          isFavorite = true;
+        });
+      }
+    }).onError((error, stackTrace) {
+      _firestore
+          .collection('users')
+          .doc('$uid')
+          .set({'likedUrls': FieldValue.arrayUnion([])});
+    });
   }
 
   @override
@@ -236,7 +241,7 @@ class _ImageInfoState extends State<ImageWithInfo> {
       });
 
       bool downloaded =
-          await saveFile(context, widget.url, _nameController.text)
+          await saveFile(context, widget.url2, _nameController.text)
               .then((value) => showSnack(
                     context: context,
                     label: "download successful",

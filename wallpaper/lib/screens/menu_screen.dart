@@ -48,6 +48,7 @@ class _MenuScreenState extends State<MenuScreen>
           context,
           MaterialPageRoute(
             builder: (context) => ImageViewer(
+              url2: urldata[index]['cover_photo']['urls']['full'],
               url: urldata[index]['cover_photo']['urls']['regular'],
               title: _tabBarController.index,
             ),

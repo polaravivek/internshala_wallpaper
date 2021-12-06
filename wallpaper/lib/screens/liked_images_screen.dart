@@ -24,9 +24,7 @@ class _LikedImagesState extends State<LikedImages> {
 
     var doc = await docref.get();
 
-    setState(() {
-      data = doc.get('likedUrls');
-    });
+    data = doc.get('likedUrls');
 
     var reversedData = List.from(data.reversed);
 
@@ -97,22 +95,9 @@ class _LikedImagesState extends State<LikedImages> {
               SizedBox(
                 height: 20,
               ),
-              (data.isEmpty)
-                  ? Expanded(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Nothing to Show...',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    )
-                  : Expanded(
-                      child: buildImagesWithStaggered(),
-                    ),
+              Expanded(
+                child: buildImagesWithStaggered(),
+              ),
             ],
           ),
         ),

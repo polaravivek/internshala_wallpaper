@@ -7,8 +7,9 @@ class ImageViewer extends StatefulWidget {
   final url;
   final title;
   final path;
+  final url2;
 
-  const ImageViewer({this.url, this.title, this.path});
+  const ImageViewer({this.url, this.title, this.path, this.url2});
 
   @override
   _ImageViewerState createState() => _ImageViewerState();
@@ -59,6 +60,7 @@ class _ImageViewerState extends State<ImageViewer> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ImageWithInfo(
+                              url2: widget.url2,
                               url: widget.url,
                               title: widget.title,
                             ),
